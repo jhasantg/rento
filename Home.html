@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rento - Car Rental</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Patua+One&display=swap" rel="stylesheet">
+    <style>
+        /* --- Global Styles & Resets --- */
+        :root {
+            --primary-bg: #EEE3D9;
+            --secondary-bg: #721CDB;
+            --accent-color: #EB8F32;
+            --accent-color-dark: #D27B24;
+            --text-color: #1D1B20;
+            --light-text-color: #FFFFFF;
+            --card-offer-bg: rgba(208, 143, 68, 0.94);
+            --font-primary: 'Inter', sans-serif;
+            --font-display: 'Patua One', cursive;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            font-family: var(--font-primary);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- Header --- */
+        .main-header {
+            padding: 20px 0;
+        }
+        
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 36px;
+            font-weight: 700;
+            font-family: var(--font-display);
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 20px;
+            font-weight: 400;
+            padding: 10px;
+        }
+
+        .main-nav a:hover {
+            color: var(--accent-color-dark);
+        }
+
+        /* --- Hero Section & Booking Form --- */
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            background: url('https://placehold.co/1440x631/EEE3D9/000?text=Background+Image') no-repeat center center/cover;
+            background-blend-mode: overlay;
+            background-color: rgba(238, 227, 217, 0.3);
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: 46px;
+            color: var(--accent-color-dark);
+            margin-bottom: 40px;
+        }
+
+        .booking-form {
+            background: var(--light-text-color);
+            border: 2px solid var(--text-color);
+            border-radius: 26px;
+            padding: 20px 40px 40px 40px;
+        }
+
+        .booking-form h2 {
+            font-family: var(--font-display);
+            font-size: 35px;
+            margin-bottom: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            font-family: var(--font-display);
+            font-size: 24px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            background: #D9D9D9;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: var(--font-primary);
+        }
+        
+        .btn-search {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            font-family: var(--font-display);
+            font-size: 24px;
+            border: none;
+            border-radius: 13px;
+            padding: 15px 40px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            float: right;
+        }
+
+        .btn-search:hover {
+            background-color: var(--accent-color-dark);
+        }
+
+        /* --- Featured Cars Section --- */
+        .featured-cars {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 46px;
+            margin-bottom: 40px;
+        }
+
+        .featured-cars .car-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .featured-cars .car-list img {
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        /* --- Summer Offer Section --- */
+        .summer-offer {
+            padding: 80px 0;
+        }
+
+        .offer-card {
+            display: flex;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .offer-image {
+            flex: 1.5;
+        }
+
+        .offer-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .offer-content {
+            flex: 1;
+            background-color: var(--card-offer-bg);
+            padding: 40px;
+            color: var(--light-text-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .offer-content h3 {
+            font-family: var(--font-display);
+            font-size: 40px;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .offer-content p {
+            font-family: var(--font-display);
+            font-size: 28px;
+            line-height: 1.4;
+            margin-bottom: 40px;
+        }
+
+        .offer-content .btn-book {
+            font-family: var(--font-display);
+            font-size: 36px;
+            color: #F9F75E;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            text-decoration: none;
+            align-self: flex-end;
+        }
+
+        /* --- Categories Section --- */
+        .categories {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .categories .section-title {
+            font-size: 60px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .category-item {
+            text-align: center;
+        }
+
+        .category-item img {
+            border-radius: 10px;
+            margin-bottom: 15px;
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .category-item h4 {
+            font-family: var(--font-display);
+            font-size: 26px;
+        }
+        
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--secondary-bg);
+            color: var(--light-text-color);
+            padding: 60px 0 20px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: var(--light-text-color);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 18px;
+        }
+        
+        .footer-contact h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact p {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--light-text-color);
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .footer-bottom .trademark {
+            margin-bottom: 10px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .main-nav { display: none; /* Add JS for hamburger menu */ }
+            .form-grid { grid-template-columns: 1fr; }
+            .btn-search { width: 100%; }
+            .offer-card { flex-direction: column; }
+            .category-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .section-title { font-size: 36px; }
+            .categories .section-title { font-size: 48px; }
+            .category-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">Rento</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Login/Register</a></li>
+                </ul>
+            </nav>
+            </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Beyond your expectations</h1>
+                <div class="booking-form">
+                    <h2>Book Now</h2>
+                    <form>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="trip-date">Trip Date</label>
+                                <input type="date" id="trip-date" name="trip-date">
+                            </div>
+                            <div class="form-group">
+                                <label for="trip-location">Trip Location</label>
+                                <input type="text" id="trip-location" name="trip-location" placeholder="e.g., Dhaka Airport">
+                            </div>
+                            <div class="form-group">
+                                <label for="return-date">Return Date</label>
+                                <input type="date" id="return-date" name="return-date">
+                            </div>
+                            <div class="form-group">
+                                <label for="return-location">Return Location</label>
+                                <input type="text" id="return-location" name="return-location" placeholder="e.g., Bogura">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-search">Search</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-cars">
+            <div class="container">
+                <h2 class="section-title">Featured cars in our collection</h2>
+                <div class="car-list">
+                    <img src="https://placehold.co/985x277/cccccc/333?text=Featured+Car+1" alt="Featured car model 1">
+                    <img src="https://placehold.co/985x273/cccccc/333?text=Featured+Car+2" alt="Featured car model 2">
+                    <img src="https://placehold.co/984x277/cccccc/333?text=Featured+Car+3" alt="Featured car model 3">
+                </div>
+            </div>
+        </section>
+
+        <section class="summer-offer">
+            <div class="container">
+                <div class="offer-card">
+                    <div class="offer-image">
+                        <img src="https://placehold.co/627x398/cccccc/333?text=Summer+Driving" alt="A scenic view for a summer drive">
+                    </div>
+                    <div class="offer-content">
+                        <h3>Summer Escape</h3>
+                        <p>Enjoy an unforgettable summer with family and friends and explore Saudi gems above and beyond!</p>
+                        <a href="#" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="categories">
+            <div class="container">
+                <h2 class="section-title">Our Categories</h2>
+                <div class="category-grid">
+                    <div class="category-item">
+                        <img src="https://placehold.co/288x142/cccccc/333?text=Small+Car" alt="A small compact car">
+                        <h4>Small Cars</h4>
+                    </div>
+                    <div class="category-item">
+                        <img src="https://placehold.co/290x142/cccccc/333?text=Sedan" alt="A sedan car">
+                        <h4>Sedan & compact</h4>
+                    </div>
+                    <div class="category-item">
+                        <img src="https://placehold.co/260x142/cccccc/333?text=SUV" alt="An SUV">
+                        <h4>SUV & Crossover</h4>
+                    </div>
+                    <div class="category-item">
+                        <img src="https://placehold.co/265x142/cccccc/333?text=Electric+Car" alt="An electric car">
+                        <h4>Electric</h4>
+                    </div>
+                    <div class="category-item">
+                        <img src="https://placehold.co/299x142/cccccc/333?text=Luxury+Car" alt="A luxury car">
+                        <h4>Luxury</h4>
+                    </div>
+                    <div class="category-item">
+                        <img src="https://placehold.co/247x142/cccccc/333?text=Family+Van" alt="A family van">
+                        <h4>Family</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Franchise</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Rent</h4>
+                    <ul>
+                        <li><a href="#">Fleet</a></li>
+                        <li><a href="#">Our Branches</a></li>
+                        <li><a href="#">Deals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Membership</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Top Cities</h4>
+                    <ul>
+                        <li><a href="#">Dhaka</a></li>
+                        <li><a href="#">Chittagong</a></li>
+                        <li><a href="#">Rajshahi</a></li>
+                        <li><a href="#">Khulna</a></li>
+                        <li><a href="#">Bogura</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-contact">
+                 <h4>Connect With Us</h4>
+                 <p>Book and manage car rental on the go. Share your experience with us.</p>
+            </div>
+
+            <div class="footer-bottom">
+                 <p class="trademark">Rento is a trademark owned by JHasan’s Software Solution</p>
+                 <p>&copy; 2025 Rento. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+```
